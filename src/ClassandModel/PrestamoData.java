@@ -58,18 +58,19 @@ public class PrestamoData {
                 LectorData ld= new LectorData(conexion);
                 Lector lector = ld.BuscarLector(rs.getInt("idLector"));
                 prestamo.setLector(lector);
-                LibroData lb = new LibroData(conexion);
-                Libros libro = lb.BuscarLector(rs.getInt("idEjemplar"));
-                prestamo.setLibros(libro);
-                
-                
+                EjemplarData ed = new EjemplarData(conexion);
+                Ejemplar ejemplar = ed.buscarEjemplar(rs.getInt("idEjemplar"));
+                prestamo.setEjemplar(ejemplar);
+                MultaData md = new MultaData(conexion);
+                Multa multa= md.buscarMulta(rs.getInt("idMulta"));
+                prestamo.setMultas(multa);
                 
                 
                 prestamos.add(prestamo);
             }
             ps.close();
     }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error en obtener lista"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en obtener lista prestamos por fecha "+ex.getMessage());
     }
            return prestamos;
       }

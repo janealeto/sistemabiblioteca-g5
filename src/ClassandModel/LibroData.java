@@ -27,9 +27,9 @@ public class LibroData {
             JOptionPane.showMessageDialog(null, "Error de conexion en Prestamo Data: "+ex.getMessage());
         }
     }
-        public Libros BuscarLector(int id){
+        public Libros BuscarLibro(int id){
         Libros libros= null;
-        String sql = "SELECT * FROM libros WHERE idEjemplar =?;";
+        String sql = "SELECT * FROM libros WHERE idLibro =?;";
          try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -40,7 +40,7 @@ public class LibroData {
             
             while(rs.next()){
                 libros = new Libros();
-                libros.setIdEjemplar(rs.getInt("idEjemplar"));
+                libros.setIdLibro(rs.getInt("idLibro"));
                 libros.setNombre(rs.getString("nombre"));
                 libros.setTipo(rs.getString("tipo"));
                 libros.setEditorial(rs.getString("editorial"));
@@ -53,7 +53,7 @@ public class LibroData {
             }
             ps.close();
          } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error en Buscar Lector: "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en Buscar Libro: "+ex.getMessage());
     }
     return libros;
 }

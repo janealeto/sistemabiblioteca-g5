@@ -14,26 +14,26 @@ import java.time.LocalDate;
 public class Multa {
     private LocalDate fechaCre;
     private LocalDate fechaExp;
-    private Lector lector; // para sacar id lector
-    private Prestamo prestamo; // para sacar id prestamo
+     // para sacar id lector
+    
     private int idMulta;
 
     public Multa() {
     }
 
-    public Multa(LocalDate fechaCre, LocalDate fechaExp, Lector lector, Prestamo prestamo, int idMulta) {
+    public Multa(LocalDate fechaCre, LocalDate fechaExp,   int idMulta) {
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
-        this.lector = lector;
-        this.prestamo = prestamo;
+       
+        
         this.idMulta = idMulta;
     }
 
-    public Multa(LocalDate fechaCre, LocalDate fechaExp, Lector lector, Prestamo prestamo) {
+    public Multa(LocalDate fechaCre, LocalDate fechaExp) {
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
-        this.lector = lector;
-        this.prestamo = prestamo;
+       
+        
     }
 
     public LocalDate getFechaCre() {
@@ -52,21 +52,6 @@ public class Multa {
         this.fechaExp = fechaExp;
     }
 
-    public Lector getLector() {
-        return lector;
-    }
-
-    public void setLector(Lector lector) {
-        this.lector = lector;
-    }
-
-    public Prestamo getPrestamo() {
-        return prestamo;
-    }
-
-    public void setPrestamo(Prestamo prestamo) {
-        this.prestamo = prestamo;
-    }
 
     public int getIdMulta() {
         return idMulta;
@@ -74,6 +59,11 @@ public class Multa {
 
     public void setIdMulta(int idMulta) {
         this.idMulta = idMulta;
+    }
+
+    @Override
+    public String toString() {
+        return " Tiene Multa" + " desde la fecha " + fechaCre + " hasta la fecha " + fechaExp;
     }
     
     

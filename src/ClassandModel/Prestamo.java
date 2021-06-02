@@ -17,26 +17,28 @@ public class Prestamo {
     private LocalDate fechaExp;
     private String estado;
     private Lector lector; // p id lector
-    private Libros libros; // para idEjemplar
-
+    private Ejemplar ejemplar; // para idLibro
+    private Multa multas;
     public Prestamo() {
     }
 
-    public Prestamo(int idPrestamo, LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Libros libros) {
+    public Prestamo(int idPrestamo, LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Ejemplar ejemplar,Multa multas) {
         this.idPrestamo = idPrestamo;
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
         this.estado = estado;
         this.lector = lector;
-        this.libros = libros;
+        this.ejemplar = ejemplar;
+        this.multas= multas;
     }
 
-    public Prestamo(LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Libros libros) {
+    public Prestamo(LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Ejemplar ejemplar,Multa multas) {
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
         this.estado = estado;
         this.lector = lector;
-        this.libros = libros;
+        this.ejemplar = ejemplar;
+        this.multas= multas;
     }
 
     public int getIdPrestamo() {
@@ -79,18 +81,33 @@ public class Prestamo {
         this.lector = lector;
     }
 
-    public Libros getLibros() {
-        return libros;
+    public Ejemplar getEjemplar() {
+        return ejemplar;
     }
 
-    public void setLibros(Libros libros) {
-        this.libros = libros;
+    public void setEjemplar(Ejemplar ejemplar) {
+        this.ejemplar = ejemplar;
+    }
+
+    
+
+    public Multa getMultas() {
+        return multas;
+    }
+
+    public void setMultas(Multa multas) {
+        this.multas = multas;
     }
 
     @Override
     public String toString() {
-        return "Prestamo " + "idPrestamo=" + idPrestamo + ", fechaCre=" + fechaCre + ", fechaExp=" + fechaExp + ", estado=" + estado + ", lector=" + lector.getNombre() + ", libros=" + libros ;
+        return "Prestamo{" + "idPrestamo=" + idPrestamo + ", fechaCre=" + fechaCre + ", fechaExp=" + fechaExp + ", estado=" + estado + ", lector=" + lector.getNombre() + ", ejemplar=" + ejemplar.getLibro().getNombre() + ", multas=" + multas + '}';
     }
+
+   
+   
+
+    
     
     
 }

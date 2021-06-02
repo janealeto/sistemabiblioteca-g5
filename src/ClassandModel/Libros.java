@@ -10,7 +10,7 @@ package ClassandModel;
  * @author Mauri
  */
 public class Libros {
-    private int idEjemplar;
+    private int idLibro;
     private String nombre;
     private String tipo;
     private String editorial;
@@ -21,8 +21,8 @@ public class Libros {
     public Libros() {
     }
 
-    public Libros(int idEjemplar, String nombre, String tipo, String editorial, int anio, String ejeEstado, Autor autor) {
-        this.idEjemplar = idEjemplar;
+    public Libros(int idLibro, String nombre, String tipo, String editorial, int anio, String ejeEstado, Autor autor) {
+        this.idLibro = idLibro;
         this.nombre = nombre;
         this.tipo = tipo;
         this.editorial = editorial;
@@ -40,13 +40,15 @@ public class Libros {
         this.autor = autor;
     }
 
-    public int getIdEjemplar() {
-        return idEjemplar;
+    public int getIdLibro() {
+        return idLibro;
     }
 
-    public void setIdEjemplar(int idEjemplar) {
-        this.idEjemplar = idEjemplar;
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
     }
+
+   
 
     public String getNombre() {
         return nombre;
@@ -98,7 +100,7 @@ public class Libros {
 
     @Override
     public String toString() {
-        return "Libros" + "idEjemplar=" + idEjemplar + ", nombre=" + nombre + ", tipo=" + tipo + ", editorial=" + editorial + ", anio=" + anio + ", ejeEstado=" + ejeEstado + ", autor= " + autor.getNombre();
+        return "Libros" + "idLibro=" + idLibro + ", nombre=" + nombre + ", tipo=" + tipo + ", editorial=" + editorial + ", anio=" + anio + ", ejeEstado=" + ejeEstado + ", autor= " + autor.getNombre();
     }
     
     
