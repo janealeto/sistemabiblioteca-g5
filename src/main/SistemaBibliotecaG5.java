@@ -35,7 +35,7 @@ public class SistemaBibliotecaG5 {
         PrestamoData pd = new PrestamoData(conexion);
         //ad.agregarAutor(a1);
        
-        List<Prestamo> la= pd.PrestamosxFecha();
+        List<Prestamo> la= pd.PrestamosxFecha(LocalDate.of(2021,06, 02));
         
         for (Prestamo a: la){
             System.out.println(a);

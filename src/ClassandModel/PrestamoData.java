@@ -37,16 +37,16 @@ public class PrestamoData {
         }
     }
       
-      public List<Prestamo> PrestamosxFecha(){
+      public List<Prestamo> PrestamosxFecha(LocalDate fechaCre){
           List<Prestamo> prestamos= new ArrayList<>();
           Prestamo prestamo;
          
-          String sql="SELECT * FROM `prestamo` WHERE `fechaCre`";
+          String sql="SELECT * FROM `prestamo` WHERE fechaCre=?";
           
            try {
             
             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           // ps.setDate(1,Date.valueOf(fechaCre));
+            ps.setDate(1,Date.valueOf(fechaCre));
             ResultSet rs = ps.executeQuery();
            
             while (rs.next()){
