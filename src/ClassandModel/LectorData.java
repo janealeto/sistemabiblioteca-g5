@@ -45,7 +45,7 @@ public class LectorData {
                 lector.setDni(rs.getInt("dni"));
                 lector.setNombre(rs.getString("nombre"));
                 lector.setFechaNac(rs.getDate("fechaNac").toLocalDate());
-                lector.setEstado(rs.getString("estado"));
+                lector.setEstado(rs.getBoolean("estado"));
             }
             ps.close();
          } catch (SQLException ex){

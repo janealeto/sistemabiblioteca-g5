@@ -27,6 +27,33 @@ public class LibroData {
             JOptionPane.showMessageDialog(null, "Error de conexion en Prestamo Data: "+ex.getMessage());
         }
     }
+    
+    public void agregrarLibro(Libros libro){
+        String sql="INSERT INTO `libros`(`nombre`, `tipo`, `editorial`, `anio`, `ejeEstado`, `idAutor`) VALUES(?,?,?,?,?,?)";
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);   
+            ps.setString(1,libro.getNombre());
+            ps.setString(2, libro.getTipo());
+            ps.setString(3, libro.getEditorial());
+            ps.setInt(4, libro.getAnio());
+            ps.setString(5, libro.getEjeEstado());
+            ps.setInt(6, libro.getAutor().getIdAutor());
+             ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+             if(rs.next()){
+            libro.setIdLibro(rs.getInt(1));
+            }
+        ps.close();
+        JOptionPane.showMessageDialog(null,"Libro Registrado");        }
+        catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error en agregar libro"+ex.getMessage());
+    }
+    }
+    
+
+    
+    
         public Libros BuscarLibro(int id){
         Libros libros= null;
         String sql = "SELECT * FROM libros WHERE idLibro =?;";

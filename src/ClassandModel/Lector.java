@@ -17,12 +17,12 @@ public class Lector {
     private String nombre;
     private String apelido;
     private LocalDate fechaNac;
-    private String estado;
+    private boolean estado;
 
     public Lector() {
     }
 
-    public Lector(int idLector, int dni, String nombre, String apelido, LocalDate fechaNac, String estado) {
+    public Lector(int idLector, int dni, String nombre, String apelido, LocalDate fechaNac, boolean estado) {
         this.idLector = idLector;
         this.dni = dni;
         this.nombre = nombre;
@@ -31,7 +31,7 @@ public class Lector {
         this.estado = estado;
     }
 
-    public Lector(int dni, String nombre, String apelido, LocalDate fechaNac, String estado) {
+    public Lector(int dni, String nombre, String apelido, LocalDate fechaNac, boolean estado) {
         this.dni = dni;
         this.nombre = nombre;
         this.apelido = apelido;
@@ -79,13 +79,14 @@ public class Lector {
         this.fechaNac = fechaNac;
     }
 
-    public String getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
+
+   
     
 }

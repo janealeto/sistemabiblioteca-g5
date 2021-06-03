@@ -105,7 +105,7 @@ public class AutorData {
             ps.close();
             JOptionPane.showMessageDialog(null, "Actualizado con exito");
         }catch (SQLException ex) {
-            System.out.println("Error Al Borrar Autor" + ex.getMessage());
+            System.out.println("Error Al Actualizar Autor" + ex.getMessage());
     }
 }
     public Autor buscarAutor(int id){

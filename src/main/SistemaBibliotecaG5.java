@@ -33,7 +33,7 @@ public class SistemaBibliotecaG5 {
         Autor a1= new Autor(37639812,"Mauricio","Arg",LocalDate.of(1993, 11, 07));
         AutorData ad= new AutorData(conexion);
         PrestamoData pd = new PrestamoData(conexion);
-        //ad.AgregarAutor(a1);
+        //ad.agregarAutor(a1);
        
         List<Prestamo> la= pd.PrestamosxFecha();
         
@@ -41,6 +41,9 @@ public class SistemaBibliotecaG5 {
             System.out.println(a);
         }
         //ad.borrarAutor(1);
+        LibroData lb= new LibroData(conexion);
+        Libros l1= new Libros("Libro de la selva","educativo","Larreus",1999,"Nuevo",a1);
+       // lb.agregrarLibro(l1);
     }
 }
     
