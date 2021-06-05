@@ -3,13 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ClassandModel;
+package datas;
 
+import ClassandModel.Autor;
+import ClassandModel.Conexion;
+import ClassandModel.Libro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +33,7 @@ public class LibroData {
         }
     }
     
-    public void agregrarLibro(Libros libro){
+    public void agregrarLibro(Libro libro){
         String sql="INSERT INTO `libros`(`nombre`, `tipo`, `editorial`, `anio`, `ejeEstado`, `idAutor`) VALUES(?,?,?,?,?,?)";
         try {
             
@@ -54,8 +59,8 @@ public class LibroData {
 
     
     
-        public Libros BuscarLibro(int id){
-        Libros libros= null;
+        public Libro BuscarLibro(int id){
+        Libro libros= null;
         String sql = "SELECT * FROM libros WHERE idLibro =?;";
          try {
             
@@ -66,7 +71,7 @@ public class LibroData {
             ResultSet rs=ps.executeQuery();
             
             while(rs.next()){
-                libros = new Libros();
+                libros = new Libro();
                 libros.setIdLibro(rs.getInt("idLibro"));
                 libros.setNombre(rs.getString("nombre"));
                 libros.setTipo(rs.getString("tipo"));
@@ -76,6 +81,38 @@ public class LibroData {
                 AutorData ad= new AutorData(conexion);
                 Autor a1= ad.buscarAutor(rs.getInt("idAutor"));
                 libros.setAutor(a1);
+                
+            }
+            ps.close();
+         } catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error en Buscar Libro: "+ex.getMessage());
+    }
+    return libros;
+}
+        public List<Libro> BuscarXnombre(String nombre){
+        List<Libro> libros= new ArrayList<Libro>();
+        String sql = "SELECT * FROM libros WHERE nombre like CONCAT( '%',?,'%');";//like '%?% me busca que ese string "?" este en cualquier parte del valor
+         try {
+            
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, nombre);
+           
+            
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                
+                Libro libro = new Libro();
+                libro.setIdLibro(rs.getInt("idLibro"));
+                libro.setNombre(rs.getString("nombre"));
+                libro.setTipo(rs.getString("tipo"));
+                libro.setEditorial(rs.getString("editorial"));
+                libro.setAnio(rs.getInt("anio"));
+                libro.setEjeEstado(rs.getString("ejeEstado"));
+                AutorData ad= new AutorData(conexion);
+                Autor a1= ad.buscarAutor(rs.getInt("idAutor"));
+                libro.setAutor(a1);
+                libros.add(libro);
                 
             }
             ps.close();

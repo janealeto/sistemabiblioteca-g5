@@ -12,18 +12,18 @@ package ClassandModel;
 public class Ejemplar {
     private int idEjemplar;
     private String estado;
-    private Libros libro;
+    private Libro libro;
 
     public Ejemplar() {
     }
 
-    public Ejemplar(int idEjemplar, String estado, Libros libro) {
+    public Ejemplar(int idEjemplar, String estado, Libro libro) {
         this.idEjemplar = idEjemplar;
         this.estado = estado;
         this.libro = libro;
     }
 
-    public Ejemplar(String estado, Libros libro) {
+    public Ejemplar(String estado, Libro libro) {
         this.estado = estado;
         this.libro = libro;
     }
@@ -44,11 +44,11 @@ public class Ejemplar {
         this.estado = estado;
     }
 
-    public Libros getLibro() {
+    public Libro getLibro() {
         return libro;
     }
 
-    public void setLibro(Libros libro) {
+    public void setLibro(Libro libro) {
         this.libro = libro;
     }
     

@@ -9,7 +9,7 @@ package ClassandModel;
  *
  * @author Mauri
  */
-public class Libros {
+public class Libro {
     private int idLibro;
     private String nombre;
     private String tipo;
@@ -18,10 +18,10 @@ public class Libros {
     private String ejeEstado;
     private Autor autor; //para sacar el id del autor
 
-    public Libros() {
+    public Libro() {
     }
 
-    public Libros(int idLibro, String nombre, String tipo, String editorial, int anio, String ejeEstado, Autor autor) {
+    public Libro(int idLibro, String nombre, String tipo, String editorial, int anio, String ejeEstado, Autor autor) {
         this.idLibro = idLibro;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -31,7 +31,7 @@ public class Libros {
         this.autor = autor;
     }
 
-    public Libros(String nombre, String tipo, String editorial, int anio, String ejeEstado, Autor autor) {
+    public Libro(String nombre, String tipo, String editorial, int anio, String ejeEstado, Autor autor) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.editorial = editorial;

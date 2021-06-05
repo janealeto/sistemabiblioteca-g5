@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ClassandModel;
+package datas;
 
+import ClassandModel.Conexion;
+import ClassandModel.Ejemplar;
+import ClassandModel.Libro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,7 +92,7 @@ public class EjemplarData {
                 ejemplar.setIdEjemplar(rs.getInt("idEjemplar"));
                 ejemplar.setEstado(rs.getString("estado"));
                 LibroData lb = new LibroData(conexion);
-                Libros libro = lb.BuscarLibro(rs.getInt("idLibro"));
+                Libro libro = lb.BuscarLibro(rs.getInt("idLibro"));
                 ejemplar.setLibro(libro);
             } 
             ps.close();

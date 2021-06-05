@@ -19,7 +19,7 @@ public class Prestamo {
     private Lector lector; // p id lector
     private Ejemplar ejemplar; // para idLibro
     private Multa multas;
-    public Prestamo() {
+    public Prestamo() {               
     }
 
     public Prestamo(int idPrestamo, LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Ejemplar ejemplar,Multa multas) {

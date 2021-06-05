@@ -15,26 +15,26 @@ public class Lector {
     private int idLector;
     private int dni;
     private String nombre;
-    private String apelido;
+    private String apellido;
     private LocalDate fechaNac;
-    private boolean estado;
+    private String estado;
 
     public Lector() {
     }
 
-    public Lector(int idLector, int dni, String nombre, String apelido, LocalDate fechaNac, boolean estado) {
+    public Lector(int idLector, int dni, String nombre, String apellido, LocalDate fechaNac, String estado) {
         this.idLector = idLector;
         this.dni = dni;
         this.nombre = nombre;
-        this.apelido = apelido;
+        this.apellido = apellido;
         this.fechaNac = fechaNac;
         this.estado = estado;
     }
 
-    public Lector(int dni, String nombre, String apelido, LocalDate fechaNac, boolean estado) {
+    public Lector(int dni, String nombre, String apellido, LocalDate fechaNac, String estado) {
         this.dni = dni;
         this.nombre = nombre;
-        this.apelido = apelido;
+        this.apellido = apellido;
         this.fechaNac = fechaNac;
         this.estado = estado;
     }
@@ -63,12 +63,12 @@ public class Lector {
         this.nombre = nombre;
     }
 
-    public String getApelido() {
-        return apelido;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
+    public void setApellido(String apelido) {
+        this.apellido = apelido;
     }
 
     public LocalDate getFechaNac() {
@@ -79,11 +79,11 @@ public class Lector {
         this.fechaNac = fechaNac;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
