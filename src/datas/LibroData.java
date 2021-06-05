@@ -34,7 +34,7 @@ public class LibroData {
     }
     
     public void agregrarLibro(Libro libro){
-        String sql="INSERT INTO `libros`(`nombre`, `tipo`, `editorial`, `anio`, `ejeEstado`, `idAutor`) VALUES(?,?,?,?,?,?)";
+        String sql="INSERT INTO `libro`(`nombre`, `tipo`, `editorial`, `anio`, `ejeEstado`, `idAutor`) VALUES(?,?,?,?,?,?)";
         try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);   
@@ -61,7 +61,7 @@ public class LibroData {
     
         public Libro BuscarLibro(int id){
         Libro libros= null;
-        String sql = "SELECT * FROM libros WHERE idLibro =?;";
+        String sql = "SELECT * FROM libro WHERE idLibro =?;";
          try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -91,7 +91,7 @@ public class LibroData {
 }
         public List<Libro> BuscarXnombre(String nombre){
         List<Libro> libros= new ArrayList<Libro>();
-        String sql = "SELECT * FROM libros WHERE nombre like CONCAT( '%',?,'%');";//like '%?% me busca que ese string "?" este en cualquier parte del valor
+        String sql = "SELECT * FROM libro WHERE nombre like CONCAT( '%',?,'%');";//like '%?% me busca que ese string "?" este en cualquier parte del valor
          try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
