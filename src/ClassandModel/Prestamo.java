@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author Mauri
  */
 public class Prestamo {
+
     private int idPrestamo;
     private LocalDate fechaCre;
     private LocalDate fechaExp;
@@ -19,26 +20,27 @@ public class Prestamo {
     private Lector lector; // p id lector
     private Ejemplar ejemplar; // para idLibro
     private Multa multas;
-    public Prestamo() {               
+
+    public Prestamo() {
     }
 
-    public Prestamo(int idPrestamo, LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Ejemplar ejemplar,Multa multas) {
+    public Prestamo(int idPrestamo, LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Ejemplar ejemplar, Multa multas) {
         this.idPrestamo = idPrestamo;
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
         this.estado = estado;
         this.lector = lector;
         this.ejemplar = ejemplar;
-        this.multas= multas;
+        this.multas = multas;
     }
 
-    public Prestamo(LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Ejemplar ejemplar,Multa multas) {
+    public Prestamo(LocalDate fechaCre, LocalDate fechaExp, String estado, Lector lector, Ejemplar ejemplar, Multa multas) {
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
         this.estado = estado;
         this.lector = lector;
         this.ejemplar = ejemplar;
-        this.multas= multas;
+        this.multas = multas;
     }
 
     public int getIdPrestamo() {
@@ -89,8 +91,6 @@ public class Prestamo {
         this.ejemplar = ejemplar;
     }
 
-    
-
     public Multa getMultas() {
         return multas;
     }
@@ -104,10 +104,4 @@ public class Prestamo {
         return "Prestamo{" + "idPrestamo=" + idPrestamo + ", fechaCre=" + fechaCre + ", fechaExp=" + fechaExp + ", estado=" + estado + ", lector=" + lector.getNombre() + ", ejemplar=" + ejemplar.getLibro().getNombre() + ", multas=" + multas + '}';
     }
 
-   
-   
-
-    
-    
-    
 }

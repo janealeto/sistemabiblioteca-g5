@@ -10,6 +10,7 @@ package ClassandModel;
  * @author Mauri
  */
 public class Ejemplar {
+
     private int idEjemplar;
     private String estado;
     private Libro libro;
@@ -51,7 +52,5 @@ public class Ejemplar {
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-    
-    
-    
+
 }

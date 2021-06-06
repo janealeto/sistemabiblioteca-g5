@@ -10,6 +10,7 @@ package ClassandModel;
  * @author Mauri
  */
 public class Libro {
+
     private int idLibro;
     private String nombre;
     private String tipo;
@@ -47,8 +48,6 @@ public class Libro {
     public void setIdLibro(int idLibro) {
         this.idLibro = idLibro;
     }
-
-   
 
     public String getNombre() {
         return nombre;
@@ -102,6 +101,5 @@ public class Libro {
     public String toString() {
         return "Libros" + "idLibro=" + idLibro + ", nombre=" + nombre + ", tipo=" + tipo + ", editorial=" + editorial + ", anio=" + anio + ", ejeEstado=" + ejeEstado + ", autor= " + autor.getNombre();
     }
-    
-    
+
 }

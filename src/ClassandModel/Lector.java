@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author Mauri
  */
 public class Lector {
+
     private int idLector;
     private int dni;
     private String nombre;
@@ -87,6 +88,9 @@ public class Lector {
         this.estado = estado;
     }
 
-   
-    
+    @Override
+    public String toString() {
+        return "Lector{" + "idLector=" + idLector + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac + ", estado=" + estado + '}';
+    }
+
 }

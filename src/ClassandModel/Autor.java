@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author Mauri
  */
 public class Autor {
+
     private int idAutor;
     private int dni;
     private String nombre;
@@ -78,10 +79,7 @@ public class Autor {
 
     @Override
     public String toString() {
-        return  " Autor " + "Id: "+ idAutor+ "dni: " + dni + ", nombre: " + nombre + " nacionalidad: " + nacio;
+        return " Autor " + "Id: " + idAutor + "dni: " + dni + ", nombre: " + nombre + " nacionalidad: " + nacio;
     }
-    
-    
-    
-    
+
 }

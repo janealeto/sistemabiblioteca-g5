@@ -22,55 +22,53 @@ import javax.swing.JOptionPane;
  * @author Mauri
  */
 public class LibroData {
-     private Connection con =null;
-      private Conexion conexion; 
-    public LibroData(Conexion conexion){
+
+    private Connection con = null;
+    private Conexion conexion;
+
+    public LibroData(Conexion conexion) {
         try {
-            this.conexion= conexion;
-            con= conexion.getConexion();
-        }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion en Prestamo Data: "+ex.getMessage());
+            this.conexion = conexion;
+            con = conexion.getConexion();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion en Prestamo Data: " + ex.getMessage());
         }
     }
-    
-    public void agregrarLibro(Libro libro){
-        String sql="INSERT INTO `libro`(`nombre`, `tipo`, `editorial`, `anio`, `ejeEstado`, `idAutor`) VALUES(?,?,?,?,?,?)";
+
+    public void agregrarLibro(Libro libro) {
+        String sql = "INSERT INTO `libro`(`nombre`, `tipo`, `editorial`, `anio`, `ejeEstado`, `idAutor`) VALUES(?,?,?,?,?,?)";
         try {
-            
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);   
-            ps.setString(1,libro.getNombre());
+
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, libro.getNombre());
             ps.setString(2, libro.getTipo());
             ps.setString(3, libro.getEditorial());
             ps.setInt(4, libro.getAnio());
             ps.setString(5, libro.getEjeEstado());
             ps.setInt(6, libro.getAutor().getIdAutor());
-             ps.executeUpdate();
+            ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-             if(rs.next()){
-            libro.setIdLibro(rs.getInt(1));
+            if (rs.next()) {
+                libro.setIdLibro(rs.getInt(1));
             }
-        ps.close();
-        JOptionPane.showMessageDialog(null,"Libro Registrado");        }
-        catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error en agregar libro"+ex.getMessage());
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Libro Registrado");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en agregar libro" + ex.getMessage());
+        }
     }
-    }
-    
 
-    
-    
-        public Libro BuscarLibro(int id){
-        Libro libros= null;
+    public Libro BuscarLibro(int id) {
+        Libro libros = null;
         String sql = "SELECT * FROM libro WHERE idLibro =?;";
-         try {
-            
+        try {
+
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
-           
-            
-            ResultSet rs=ps.executeQuery();
-            
-            while(rs.next()){
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
                 libros = new Libro();
                 libros.setIdLibro(rs.getInt("idLibro"));
                 libros.setNombre(rs.getString("nombre"));
@@ -78,30 +76,30 @@ public class LibroData {
                 libros.setEditorial(rs.getString("editorial"));
                 libros.setAnio(rs.getInt("anio"));
                 libros.setEjeEstado(rs.getString("ejeEstado"));
-                AutorData ad= new AutorData(conexion);
-                Autor a1= ad.buscarAutor(rs.getInt("idAutor"));
+                AutorData ad = new AutorData(conexion);
+                Autor a1 = ad.buscarAutor(rs.getInt("idAutor"));
                 libros.setAutor(a1);
-                
+
             }
             ps.close();
-         } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error en Buscar Libro: "+ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en Buscar Libro: " + ex.getMessage());
+        }
+        return libros;
     }
-    return libros;
-}
-        public List<Libro> BuscarXnombre(String nombre){
-        List<Libro> libros= new ArrayList<Libro>();
+
+    public List<Libro> BuscarXnombre(String nombre) {
+        List<Libro> libros = new ArrayList<Libro>();
         String sql = "SELECT * FROM libro WHERE nombre like CONCAT( '%',?,'%');";//like '%?% me busca que ese string "?" este en cualquier parte del valor
-         try {
-            
+        try {
+
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, nombre);
-           
-            
-            ResultSet rs=ps.executeQuery();
-            
-            while(rs.next()){
-                
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
                 Libro libro = new Libro();
                 libro.setIdLibro(rs.getInt("idLibro"));
                 libro.setNombre(rs.getString("nombre"));
@@ -109,16 +107,16 @@ public class LibroData {
                 libro.setEditorial(rs.getString("editorial"));
                 libro.setAnio(rs.getInt("anio"));
                 libro.setEjeEstado(rs.getString("ejeEstado"));
-                AutorData ad= new AutorData(conexion);
-                Autor a1= ad.buscarAutor(rs.getInt("idAutor"));
+                AutorData ad = new AutorData(conexion);
+                Autor a1 = ad.buscarAutor(rs.getInt("idAutor"));
                 libro.setAutor(a1);
                 libros.add(libro);
-                
+
             }
             ps.close();
-         } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error en Buscar Libro: "+ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en Buscar Libro: " + ex.getMessage());
+        }
+        return libros;
     }
-    return libros;
-}
 }

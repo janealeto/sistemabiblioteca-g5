@@ -12,28 +12,30 @@ import java.time.LocalDate;
  * @author Mauri
  */
 public class Multa {
+
     private LocalDate fechaCre;
     private LocalDate fechaExp;
-     // para sacar id lector
-    
+    private String estado;
+    // para sacar id lector
+
     private int idMulta;
 
     public Multa() {
     }
 
-    public Multa(LocalDate fechaCre, LocalDate fechaExp,   int idMulta) {
+    public Multa(LocalDate fechaCre, LocalDate fechaExp, String estado, int idMulta) {
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
-       
-        
+        this.estado = estado;
+
         this.idMulta = idMulta;
     }
 
-    public Multa(LocalDate fechaCre, LocalDate fechaExp) {
+    public Multa(LocalDate fechaCre, LocalDate fechaExp, String estado) {
         this.fechaCre = fechaCre;
         this.fechaExp = fechaExp;
-       
-        
+        this.estado = estado;
+
     }
 
     public LocalDate getFechaCre() {
@@ -52,6 +54,13 @@ public class Multa {
         this.fechaExp = fechaExp;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public int getIdMulta() {
         return idMulta;
@@ -63,8 +72,7 @@ public class Multa {
 
     @Override
     public String toString() {
-        return " Tiene Multa" + " desde la fecha " + fechaCre + " hasta la fecha " + fechaExp;
+        return " Tiene Multa desde la fecha " + fechaCre + " hasta la fecha " + fechaExp;
     }
-    
-    
+
 }
