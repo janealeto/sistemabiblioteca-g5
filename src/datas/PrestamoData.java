@@ -71,7 +71,7 @@ public class PrestamoData {
             }
 
             ps.close();
-
+            JOptionPane.showMessageDialog(null, "Prestamo Registrado");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion en registrarPrestamo: " + ex.getMessage());
         }
