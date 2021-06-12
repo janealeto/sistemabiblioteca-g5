@@ -105,6 +105,7 @@ public class LectorData {
                 lector.setIdLector(rs.getInt("idLector"));
                 lector.setDni(rs.getInt("dni"));
                 lector.setNombre(rs.getString("nombre"));
+                
                 lector.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 lector.setEstado(rs.getString("estado"));
             }

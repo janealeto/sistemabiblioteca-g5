@@ -40,13 +40,11 @@ public class SistemaBibliotecaG5 {
         Autor a1 = new Autor(37639823, "Federico", "Lorca", LocalDate.of(1978, 8, 8));
         AutorData ad = new AutorData(conexion);
         //ad.agregarAutor(a1);
-
-//        List<Prestamo> la= pd.PrestamosxFecha(LocalDate.of(2021,06, 02));
-//        
-//        for (Prestamo a: la){
-//            System.out.println(a);
-//        }
-        //ad.borrarAutor(1);
+        ad.actualizarAutor(a1);
+        ad.buscarAutor(0);
+        
+      //ad.borrarAutor(1);
+      
         LectorData ld = new LectorData(conexion);
 //        Lector le = ld.BuscarXdni(34677931);
 //        ld.registrarLector(le);
@@ -55,12 +53,15 @@ public class SistemaBibliotecaG5 {
         Libro l2 = new Libro("Libro de idioma", "educativo", "Larreus", 2001, "Nuevo", a1);
         LibroData lb = new LibroData(conexion);
         //lb.agregrarLibro(l2);
-
 //        l1 = lb.BuscarXnombre("Libro").get(1);
+       //-----  lb.BuscarLibro(0);
         Ejemplar ej = new Ejemplar("Nuevo", l1);
         EjemplarData ed = new EjemplarData(conexion);
 //        ed.agregarEjemplar(ej);
 //        ej = ed.buscarEjemplarXLibro(l1.getIdLibro());
+        ed.buscarEjemplar(0);
+        
+//        ed.borrarEjemplar(0);
 
         MultaData md = new MultaData(conexion);
 //        Multa m = md.registrarMulta();
@@ -74,7 +75,11 @@ public class SistemaBibliotecaG5 {
 //         p1.setMultas(m);
 //         pd.actualizarPrestamo(p1);
 //         System.out.println (pd.lectoresQueSeLesVencioElPrestamo());
-
+//        List<Prestamo> la= pd.PrestamosxFecha(LocalDate.of(2021,06, 02));
+//        
+//        for (Prestamo a: la){
+//            System.out.println(a);
+//        }
 //         System.out.println(pd.prestamosVigentesXlector(7));//del prestamo, de lector, obtengo el idLector
     }
 }
