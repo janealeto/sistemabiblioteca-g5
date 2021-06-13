@@ -135,7 +135,6 @@ public class MultaData {
                 Prestamo prestamo = pd.buscarPrestamoXidMulta(rs.getInt("idMulta"));//para obtener el id de multa
 
                 LectorData ld = new LectorData(conexion);
-
                 Lector lector = ld.BuscarLector(prestamo.getLector().getIdLector());//lo obtengo y lo guardo
 
                 lectores.add(lector);

@@ -48,7 +48,7 @@ public class EjemplarData {
             ps.close();
             JOptionPane.showMessageDialog(null, "Ejemplar Agregado");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro en ejemplar, ingrese otro" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en ejemplar, ingrese otro" + ex.getMessage());
         }
 
     }

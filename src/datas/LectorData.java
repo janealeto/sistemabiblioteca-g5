@@ -57,10 +57,11 @@ public class LectorData {
                 lector.setIdLector(rs.getInt(1));
             }
 
-            ps.close();
-
+            ps.close();//cierra la conexion
+            
+            JOptionPane.showMessageDialog(null,"Lector Registrado");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion en registrarLector: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Dni duplicado en Lector " + ex.getMessage());
         }
     }
 
@@ -79,6 +80,7 @@ public class LectorData {
                 lector.setIdLector(rs.getInt("idLector"));
                 lector.setDni(rs.getInt("dni"));
                 lector.setNombre(rs.getString("nombre"));
+                lector.setApellido(rs.getString("apellido"));
                 lector.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 lector.setEstado(rs.getString("estado"));
             }
@@ -105,7 +107,7 @@ public class LectorData {
                 lector.setIdLector(rs.getInt("idLector"));
                 lector.setDni(rs.getInt("dni"));
                 lector.setNombre(rs.getString("nombre"));
-                
+                lector.setApellido(rs.getString("apellido"));
                 lector.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 lector.setEstado(rs.getString("estado"));
             }

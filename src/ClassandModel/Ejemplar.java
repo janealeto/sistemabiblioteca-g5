@@ -53,4 +53,9 @@ public class Ejemplar {
         this.libro = libro;
     }
 
+    @Override
+    public String toString() {
+        return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", estado=" + estado + ", libro=" + libro.getNombre() + '}';
+    }
+
 }
