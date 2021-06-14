@@ -10,6 +10,8 @@ import ClassandModel.Ejemplar;
 import ClassandModel.Libro;
 import datas.EjemplarData;
 import datas.LibroData;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,6 +24,8 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
         private EjemplarData ed;
         private LibroData ld;
         private Conexion conexion;
+        private Libro libro;
+        List<Libro>libros = new ArrayList<>();
     /**
      * Creates new form VistaEjemplar
      */
@@ -30,6 +34,7 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
         try {
             conexion = new Conexion();
             ed= new EjemplarData(conexion);
+           
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(VistaEjemplar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -174,9 +179,9 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbAgregar)
                             .addComponent(jbActua)
@@ -184,7 +189,6 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
                             .addComponent(jbLimpiar))
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -285,7 +289,7 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
         jtEstado.setText("");
         jtLibro.setText("");
     }//GEN-LAST:event_jbLimpiarActionPerformed
-
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;

@@ -8,7 +8,9 @@ package datas;
 import ClassandModel.Autor;
 import ClassandModel.Conexion;
 import ClassandModel.Libro;
+import datas.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -119,4 +121,36 @@ public class LibroData {
         }
         return libros;
     }
+    public void actualizarLibro(Libro libro) {
+        String sql = "UPDATE `libro` SET `nombre`=?,`tipo=?,`editorial`=?,`anio`=?,`ejeEstado`=?,`idAutor`=? WHERE idLibro=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, libro.getNombre());
+            ps.setString(2, libro.getTipo());
+            ps.setString(3, libro.getEditorial());
+            ps.setInt(4,libro.getAnio());
+            ps.setString(5, libro.getEjeEstado());
+            ps.setInt(6, libro.getAutor().getIdAutor());
+            ps.setInt(7, libro.getIdLibro());
+            ps.executeUpdate();
+
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Actualizado con exito");
+        } catch (SQLException ex) {
+            System.out.println("Error Al Actualizar Libro" + ex.getMessage());
+        }
+    }
+     public void borrarLibro(int id) {
+        String sql = "DELETE FROM Libro WHERE idLibro=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Borrado con exito");
+        } catch (SQLException ex) {
+            System.out.println("Error Al Borrar Libro" + ex.getMessage());
+        }
+    }
+    
 }

@@ -5,6 +5,7 @@
  */
 package datas;
 
+import ClassandModel.Autor;
 import ClassandModel.Conexion;
 import ClassandModel.Ejemplar;
 import ClassandModel.Libro;
@@ -13,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -131,5 +134,32 @@ public class EjemplarData {
 
         }
         return ejemplar;
+    }
+    public List<Libro> listarLibros(){
+        List<Libro> libros = new ArrayList<Libro>();
+          try{
+        String sql = "SELECT * FROM libro";
+        PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        ResultSet rs = ps.executeQuery();
+        Libro auxLibro;
+        while(rs.next()){
+        auxLibro = new Libro();
+        auxLibro.setIdLibro(rs.getInt("idLibro"));
+        auxLibro.setNombre(rs.getString("nombre"));
+        auxLibro.setTipo(rs.getString("tipo"));
+        auxLibro.setEditorial(rs.getString("editorial"));
+        auxLibro.setAnio(rs.getInt("anio"));
+        auxLibro.setEjeEstado(rs.getString("EjeEstado"));
+        AutorData ad= new AutorData(conexion);
+        Autor auxAutor = ad.buscarAutor(rs.getInt("idAutor"));
+        auxLibro.setAutor(auxAutor);
+
+        libros.add(auxLibro);
+        }
+        ps.close();
+    }   catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los libros "+" "+ex.getMessage());
+        }
+    return libros;
     }
 }

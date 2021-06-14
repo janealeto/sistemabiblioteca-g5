@@ -7,7 +7,12 @@ package Views;
 
 import ClassandModel.Autor;
 import ClassandModel.Conexion;
+import ClassandModel.Prestamo;
 import datas.AutorData;
+import datas.PrestamoData;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,29 +20,32 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Jannete
+ * @author Mauri
  */
-public class VistaObtenerAutores extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo;
-    private ArrayList<Autor>listAutores;
-    private AutorData ad;
+public class VistaListaxFecha extends javax.swing.JInternalFrame {
+ private DefaultTableModel modelo;
+    private ArrayList<Prestamo>listPrestamos;
+    private PrestamoData pd;
     private Conexion conexion;
     /**
-     * Creates new form VistaObtenerAutores
+     * Creates new form VistaListaxFecha
      */
-    public VistaObtenerAutores() {
+    public VistaListaxFecha() {
         initComponents();
-        try {
+        
+         try {
             conexion= new Conexion();
             modelo = new DefaultTableModel();
-            ad = new AutorData (conexion);
-            listAutores = (ArrayList) ad.obtenerAutores();
+            pd = new PrestamoData (conexion);
+            armarCabeceraTabla();
+            borrarFilasTabla();
             
-            //cargaDatos();
+            
             
             } catch (ClassNotFoundException ex) {
             Logger.getLogger(VistaObtenerAutores.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
     }
 
     /**
@@ -52,21 +60,16 @@ public class VistaObtenerAutores extends javax.swing.JInternalFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cbAutores = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tAutores = new javax.swing.JTable();
+        tPrestamo = new javax.swing.JTable();
+        jdFecha = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
 
-        jLabel1.setText("LISTADO DE AUTORES");
+        jLabel1.setText("LISTADO DE PRESTAMOS X FECHA");
 
-        jLabel2.setText("AUTOR");
+        jLabel2.setText("FECHA");
 
-        cbAutores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAutoresActionPerformed(evt);
-            }
-        });
-
-        tAutores.setModel(new javax.swing.table.DefaultTableModel(
+        tPrestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,12 +80,20 @@ public class VistaObtenerAutores extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tAutores);
+        jScrollPane1.setViewportView(tPrestamo);
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(cbAutores, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jdFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -90,15 +101,16 @@ public class VistaObtenerAutores extends javax.swing.JInternalFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addGap(103, 103, 103)
-                            .addComponent(jLabel2)
-                            .addGap(44, 44, 44)
-                            .addComponent(cbAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
-                            .addGap(203, 203, 203)
-                            .addComponent(jLabel1)))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(30, 30, 30)
+                                .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -109,10 +121,12 @@ public class VistaObtenerAutores extends javax.swing.JInternalFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addGap(67, 67, 67)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(187, Short.MAX_VALUE))
@@ -136,34 +150,53 @@ public class VistaObtenerAutores extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAutoresActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        cargarDatos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+ public void borrarFilasTabla(){//Para mostrar datos nuevos
+        int a = modelo.getRowCount()-1;//Row: cada fila
+        for(int i=a; i>=0 ;i--){
+            
+            modelo.removeRow(i);
+        }
+    }
+    public void cargarDatos(){
+        borrarFilasTabla();
+        LocalDate fecha=(jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        // Date f = (Date) jdFecha.getDate();
+        ArrayList<Prestamo>listPrestamos = (ArrayList)pd.PrestamosxFecha(fecha);
+        
+        for(Prestamo a:listPrestamos){
+            
+                modelo.addRow(new Object []{a.getIdPrestamo(),a.getFechaCre(),a.getFechaExp(),a.getEstado(),a.getLector().getNombre(),a.getMultas().getEstado()} );
+            }
+        
+    }
     
-    }//GEN-LAST:event_cbAutoresActionPerformed
-
-     public void cargarDatos(){
-         Autor a1= new Autor();
-     }
-     public void armarCabeceraTabla(){
+    public void armarCabeceraTabla(){
         ArrayList<Object>columns=new ArrayList<Object>();//se agregan los titulos de las columnas
         
         columns.add("ID");
-        columns.add("DNI");
-        columns.add("Nombre");
-        columns.add("Nacionalidad");
-        columns.add("Fecha Nac");
+        columns.add("Fecha Creacion");
+        columns.add("Fecha Expiracion");
+        columns.add("Estado");
+        columns.add("Lector");
+        columns.add("Ejemplar");
+        columns.add("Multa");
         
         for(Object it:columns){
             modelo.addColumn(it);
         }
-        tAutores.setModel(modelo);//aca viene el modelo que arme
+        tPrestamo.setModel(modelo);//aca viene el modelo que arme
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Autor> cbAutores;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tAutores;
+    private com.toedter.calendar.JDateChooser jdFecha;
+    private javax.swing.JTable tPrestamo;
     // End of variables declaration//GEN-END:variables
 }
