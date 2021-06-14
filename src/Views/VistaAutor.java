@@ -5,7 +5,6 @@
  */
 package Views;
 
-import Datas.*;
 import ClassandModel.*; 
 import datas.AutorData;
 import java.time.LocalDate;
@@ -228,9 +227,16 @@ public class VistaAutor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtDniActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-        // TODO add your handling code here:
-         int id= Integer.parseInt(jtId.getText()); 
-        ad.borrarAutor(id);
+       if(jtId.getText() !=null && jtId.getText() != ""){
+            
+            int id= Integer.parseInt(jtId.getText()); 
+            ad.borrarAutor(id);
+            
+            JOptionPane.showMessageDialog(null," Autor eliminado");
+            
+        }else{
+            JOptionPane.showMessageDialog(null," Ingresa el id de autor");
+        }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
@@ -258,7 +264,7 @@ public class VistaAutor extends javax.swing.JInternalFrame {
 
     private void jbActuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActuaActionPerformed
         // TODO add your handling code here:
-            if(jtId.getText() !=null){
+            if(jtId.getText() !=null && jtId.getText() != ""){
             String nombre=jtNombre.getText();
             String nacio=jtNacio.getText();
             int dni= Integer.parseInt(jtDni.getText());
@@ -267,11 +273,15 @@ public class VistaAutor extends javax.swing.JInternalFrame {
         
              Autor autor= new Autor(id,dni,nombre,nacio,fechaNac);
              ad.actualizarAutor(autor);
-        }
+             
+             JOptionPane.showMessageDialog(null," Autor actualizado");
+        }else{
+             JOptionPane.showMessageDialog(null," Ingresa el id de autor");   
+            }
     }//GEN-LAST:event_jbActuaActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
+        if(jtId.getText() != null && jtId.getText() != ""){
         int id= Integer.parseInt(jtId.getText());
         Autor autor=  ad.buscarAutor(id);
         if (autor!=null){
@@ -281,7 +291,12 @@ public class VistaAutor extends javax.swing.JInternalFrame {
             jtFecha.setText(autor.getFechaNac().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             jtDni.setText(autor.getDni()+"");
             
+        }else{
+            JOptionPane.showMessageDialog(null," El autor buscado no existe");
         }
+       
+        }
+        
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed

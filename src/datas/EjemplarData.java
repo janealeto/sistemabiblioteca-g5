@@ -95,7 +95,7 @@ public class EjemplarData {
                 ejemplar.setIdEjemplar(rs.getInt("idEjemplar"));
                 ejemplar.setEstado(rs.getString("estado"));
                 LibroData lb = new LibroData(conexion);
-                Libro libro = lb.BuscarLibro(rs.getInt("idLibro"));
+                Libro libro = lb.buscarLibro(rs.getInt("idLibro"));
                 ejemplar.setLibro(libro);
             }
             ps.close();
@@ -121,7 +121,7 @@ public class EjemplarData {
                 ejemplar.setIdEjemplar(rs.getInt("idEjemplar"));
                 ejemplar.setEstado(rs.getString("estado"));
                 LibroData lb = new LibroData(conexion);
-                Libro libro = lb.BuscarLibro(rs.getInt("idLibro"));
+                Libro libro = lb.buscarLibro(rs.getInt("idLibro"));
                 ejemplar.setLibro(libro);
             }
             ps.close();

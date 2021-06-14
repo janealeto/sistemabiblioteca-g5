@@ -206,14 +206,20 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        int id= Integer.parseInt(jtId.getText());
-        Ejemplar ejemplar=  ed.buscarEjemplar(id);
-        if (ejemplar!=null){
-            jtId.setText(ejemplar.getIdEjemplar()+"");
-            jtEstado.setText(ejemplar.getEstado());
-            jtLibro.setText(ejemplar.getLibro()+"");///
-            
+        
+        if(jtId.getText() != null && jtId.getText() != ""){
+            int id= Integer.parseInt(jtId.getText());
+            Ejemplar ejemplar=  ed.buscarEjemplar(id);
+            if (ejemplar!=null){
+                jtId.setText(ejemplar.getIdEjemplar()+"");
+                jtEstado.setText(ejemplar.getEstado());
+                jtLibro.setText(ejemplar.getLibro()+"");//las "" son para que se convierta a string
+
+            }else{
+                JOptionPane.showMessageDialog(null," El ejemplar buscado no existe");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null," Ingresa el id del ejemplar");
         }
         
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -232,7 +238,7 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null," Agregar Id de Libro ");
         }
         
-        Libro libro = ld.BuscarLibro(idLibro);
+        Libro libro = ld.buscarLibro(idLibro);
         
         Ejemplar ejemplar= new Ejemplar(estado,libro);
         ed.agregarEjemplar(ejemplar);
@@ -244,22 +250,33 @@ public class VistaEjemplar extends javax.swing.JInternalFrame {
     private void jbActuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActuaActionPerformed
         // TODO add your handling code here:
         
-//        if(jtId.getText() !=null){               //
-//            
-//           
-//            int id= Integer.parseInt(jtId.getText());
-//            int idLibro = Integer.parseInt(jtLibro.getText());
-//            String estado=jtEstado.getText();
-//        
-//             Ejemplar ejemplar = new Ejemplar(estado,idLibro);
-//             ed.actualizarEjemplar(ejemplar);
-//        }
+        if(jtId.getText() !=null && jtId.getText() != ""){               //
+            
+            int id= Integer.parseInt(jtId.getText());
+            String estado=jtEstado.getText();
+        
+             Ejemplar ejemplar = ed.buscarEjemplar(id);
+             ejemplar.setEstado(estado);
+             ed.actualizarEjemplar(ejemplar);
+             
+             JOptionPane.showMessageDialog(null," Ejemplar actualizado");
+        }else{
+            JOptionPane.showMessageDialog(null," Ingresa el id del ejemplar");
+        }
     }//GEN-LAST:event_jbActuaActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-        // TODO add your handling code here:
-        int id= Integer.parseInt(jtId.getText()); 
-        ed.borrarEjemplar(id); 
+        
+        if(jtId.getText() !=null && jtId.getText() != ""){
+            
+            int id= Integer.parseInt(jtId.getText()); 
+            ed.borrarEjemplar(id);
+            
+            JOptionPane.showMessageDialog(null," Ejemplar eliminado");
+            
+        }else{
+            JOptionPane.showMessageDialog(null," Ingresa el id del ejemplar");
+        }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed

@@ -30,11 +30,13 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         ForAutor = new javax.swing.JMenuItem();
+        ObtenerAutores = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         ForEjemplar = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -45,6 +47,8 @@ public class Principal extends javax.swing.JFrame {
         ForMulta = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         ForPrestamo = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -52,13 +56,15 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu2.setText("jMenu2");
 
+        jMenu10.setText("jMenu10");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 463, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,6 +88,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(ForAutor);
+
+        ObtenerAutores.setText("Obtener Autores");
+        ObtenerAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ObtenerAutoresActionPerformed(evt);
+            }
+        });
+        jMenu4.add(ObtenerAutores);
 
         jMenuBar1.add(jMenu4);
 
@@ -144,6 +158,13 @@ public class Principal extends javax.swing.JFrame {
         jMenu9.add(ForPrestamo);
 
         jMenuBar1.add(jMenu9);
+
+        jMenu11.setText("Consultas");
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu11.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu11);
 
         setJMenuBar(jMenuBar1);
 
@@ -225,6 +246,16 @@ public class Principal extends javax.swing.JFrame {
         escritorio.moveToFront(vp);
     }//GEN-LAST:event_ForPrestamoActionPerformed
 
+    private void ObtenerAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObtenerAutoresActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaObtenerAutores vo = VistaObtenerAutores();
+        vo.setVisible(true);
+        escritorio.add(vo);
+        escritorio.moveToFront(vo);
+    }//GEN-LAST:event_ObtenerAutoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,8 +298,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem ForLibro;
     private javax.swing.JMenuItem ForMulta;
     private javax.swing.JMenuItem ForPrestamo;
+    private javax.swing.JMenu ObtenerAutores;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -279,5 +313,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
+
+    private VistaObtenerAutores VistaObtenerAutores() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

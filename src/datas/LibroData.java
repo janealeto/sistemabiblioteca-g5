@@ -58,7 +58,7 @@ public class LibroData {
         }
     }
 
-    public Libro BuscarLibro(int id) {
+    public Libro buscarLibro(int id) {
         Libro libros = null;
         String sql = "SELECT * FROM libro WHERE idLibro =?;";
         try {
